@@ -1,5 +1,7 @@
 package ru.oop.journal.model;
 
+import ru.oop.journal.exception.InvalidPointsException;
+
 public enum Grade {
 
     UNSATISFACTORY(0, 49, "Неудовлетворительно"),
@@ -31,9 +33,7 @@ public enum Grade {
 
     public static Grade fromPoints(int points) {
         if (points < 0 || points > 100) {
-            throw new IllegalArgumentException(
-                    "Баллы должны быть от 0 до 100: " + points
-            );
+            throw new InvalidPointsException(points);
         }
 
         for (Grade grade : values()) {
