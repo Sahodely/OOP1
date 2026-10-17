@@ -19,18 +19,41 @@ public enum Grade {
         this.description = description;
     }
 
+    /**
+     * Возвращает минимальное количество баллов для оценки.
+     *
+     * @return минимальное количество баллов
+     */
     public int getMinPoints() {
         return minPoints;
     }
 
+    /**
+     * Возвращает максимальное количество баллов для оценки.
+     *
+     * @return максимальное количество баллов
+     */
     public int getMaxPoints() {
         return maxPoints;
     }
 
+    /**
+     * Возвращает название оценки.
+     *
+     * @return описание оценки
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Определяет оценку по количеству баллов.
+     *
+     * @param points количество баллов от 0 до 100
+     * @return соответствующая оценка
+     * @throws ru.oop.journal.exception.InvalidPointsException
+     *         если количество баллов меньше 0 или больше 100
+     */
     public static Grade fromPoints(int points) {
         if (points < 0 || points > 100) {
             throw new InvalidPointsException(points);

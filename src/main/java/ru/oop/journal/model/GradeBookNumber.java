@@ -1,5 +1,10 @@
 package ru.oop.journal.model;
 
+/**
+ * Номер зачётной книжки студента.
+ *
+ * @param value номер зачётной книжки
+ */
 public record GradeBookNumber(String value) {
 
     public GradeBookNumber {

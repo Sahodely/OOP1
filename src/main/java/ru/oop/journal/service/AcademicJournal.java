@@ -1,6 +1,11 @@
 package ru.oop.journal.service;
 
-import ru.oop.journal.model.*;
+import ru.oop.journal.model.ControlPoint;
+import ru.oop.journal.model.Discipline;
+import ru.oop.journal.model.Grade;
+import ru.oop.journal.model.GradeEntry;
+import ru.oop.journal.model.Group;
+import ru.oop.journal.model.Student;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,10 +13,21 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Журнал успеваемости студентов.
+ */
 public class AcademicJournal {
 
     private final List<GradeEntry> entries = new ArrayList<>();
 
+    /**
+     * Выставляет студенту баллы за контрольную точку.
+     * Если баллы уже были выставлены, старое значение заменяется.
+     *
+     * @param student студент
+     * @param controlPoint контрольная точка
+     * @param points количество баллов
+     */
     public void assignPoints(Student student,
                              ControlPoint controlPoint,
                              int points) {
@@ -28,6 +44,13 @@ public class AcademicJournal {
         );
     }
 
+    /**
+     * Рассчитывает средний балл студента с учётом весов
+     * контрольных точек.
+     *
+     * @param student студент
+     * @return средний балл студента
+     */
     public double getAverageByStudent(Student student) {
 
         double weightedSum = 0;
@@ -47,6 +70,12 @@ public class AcademicJournal {
         return weightedSum / totalWeight;
     }
 
+    /**
+     * Рассчитывает средний балл по дисциплине.
+     *
+     * @param discipline дисциплина
+     * @return средний балл по дисциплине
+     */
     public double getAverageByDiscipline(Discipline discipline) {
 
         double weightedSum = 0;
@@ -69,6 +98,12 @@ public class AcademicJournal {
         return weightedSum / totalWeight;
     }
 
+    /**
+     * Рассчитывает средний балл группы.
+     *
+     * @param group группа
+     * @return средний балл группы
+     */
     public double getAverageByGroup(Group group) {
 
         double weightedSum = 0;
@@ -91,6 +126,12 @@ public class AcademicJournal {
         return weightedSum / totalWeight;
     }
 
+    /**
+     * Возвращает список отличников.
+     * Отличником считается студент, у которого все оценки отличные.
+     *
+     * @return список отличников
+     */
     public List<Student> getExcellentStudents() {
 
         Set<Student> students = new LinkedHashSet<>();
@@ -122,7 +163,13 @@ public class AcademicJournal {
         return List.copyOf(excellentStudents);
     }
 
-
+    /**
+     * Возвращает список должников.
+     * Должником считается студент, у которого есть хотя бы одна
+     * неудовлетворительная оценка.
+     *
+     * @return список должников
+     */
     public List<Student> getDebtors() {
 
         Set<Student> debtors = new LinkedHashSet<>();
@@ -136,8 +183,15 @@ public class AcademicJournal {
         return List.copyOf(debtors);
     }
 
-
-    public List<GradeEntry> getStatement(Discipline discipline, LocalDate date) {
+    /**
+     * Формирует ведомость по дисциплине на указанную дату.
+     *
+     * @param discipline дисциплина
+     * @param date дата
+     * @return список записей ведомости
+     */
+    public List<GradeEntry> getStatement(Discipline discipline,
+                                         LocalDate date) {
 
         List<GradeEntry> statement = new ArrayList<>();
 
@@ -155,5 +209,4 @@ public class AcademicJournal {
 
         return List.copyOf(statement);
     }
-
 }

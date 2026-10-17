@@ -1,5 +1,10 @@
 package ru.oop.journal.model;
 
+/**
+ * Учебная группа студентов.
+ *
+ * @param name название группы
+ */
 public record Group(String name) {
 
     public Group {

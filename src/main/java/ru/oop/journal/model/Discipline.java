@@ -1,5 +1,10 @@
 package ru.oop.journal.model;
 
+/**
+ * Учебная дисциплина.
+ *
+ * @param name название дисциплины
+ */
 public record Discipline(String name) {
 
     public Discipline {
