@@ -273,6 +273,5 @@ public class Main {
             System.out.println(student);
         }
 
-        System.out.println("\n========== ДЕМОНСТРАЦИЯ ЗАВЕРШЕНА ==========");
     }
 }
